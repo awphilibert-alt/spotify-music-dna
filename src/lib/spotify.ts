@@ -90,7 +90,7 @@ export async function getMusicDNA(token: string) {
   /* Count genres from top artists */
   const genreCount: Record<string, number> = {};
   for (const artist of topArtists.items) {
-    for (const genre of artist.genres) {
+    for (const genre of (artist.genres ?? [])) {
       genreCount[genre] = (genreCount[genre] ?? 0) + 1;
     }
   }
