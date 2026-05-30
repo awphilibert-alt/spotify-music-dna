@@ -14,6 +14,7 @@ interface DashboardProps {
   data: SpotifyData | null;
   mockData: typeof MockDataType;
   isConnected: boolean;
+  authError?: string | null;
 }
 
 function fmt(n: number): string {
@@ -32,7 +33,7 @@ function Equalizer() {
 }
 
 /* ═══════════════════════════════════════ */
-export function Dashboard({ data, mockData, isConnected }: DashboardProps) {
+export function Dashboard({ data, mockData, isConnected, authError }: DashboardProps) {
   /* Merge: use real data if connected, fall back to mock */
   const user = data?.user ?? mockData.user;
   const topArtists = data?.top_artists ?? mockData.top_artists.map((a) => ({
@@ -101,6 +102,13 @@ export function Dashboard({ data, mockData, isConnected }: DashboardProps) {
               ))}
             </div>
           </div>
+
+          {/* Auth error display */}
+          {authError && (
+            <div className="bg-red-500/10 border border-red-500/30 rounded-lg px-4 py-3 text-red-400 text-xs font-mono">
+              ⚠️ Spotify API error: {authError}
+            </div>
+          )}
 
           {/* Connect button when not logged in */}
           {!isConnected && (

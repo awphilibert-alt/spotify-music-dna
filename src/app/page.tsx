@@ -9,15 +9,16 @@ export default async function Home() {
 
   let data = null;
   let isConnected = false;
+  let authError: string | null = null;
 
   if (token) {
     try {
       data = await getMusicDNA(token);
       isConnected = true;
-    } catch {
-      /* Token expired or invalid — show mock data */
+    } catch (err) {
+      authError = err instanceof Error ? err.message : "Unknown API error";
     }
   }
 
-  return <Dashboard data={data} mockData={mockData} isConnected={isConnected} />;
+  return <Dashboard data={data} mockData={mockData} isConnected={isConnected} authError={authError} />;
 }

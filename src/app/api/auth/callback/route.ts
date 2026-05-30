@@ -24,7 +24,8 @@ export async function GET(request: NextRequest) {
 
     return response;
   } catch (err) {
-    console.error("Spotify auth error:", err);
-    return NextResponse.redirect(new URL("/?error=auth_failed", request.url));
+    const message = err instanceof Error ? err.message : "unknown";
+    console.error("Spotify auth error:", message);
+    return NextResponse.redirect(new URL(`/?error=${encodeURIComponent(message)}`, request.url));
   }
 }
