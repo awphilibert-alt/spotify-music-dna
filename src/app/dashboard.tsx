@@ -71,9 +71,18 @@ export function Dashboard({ data, mockData, isConnected, authError }: DashboardP
                 MUSIC<span className="text-accent"> DNA</span>
               </h1>
             </div>
-            <div className="text-right">
-              <p className="font-display text-xl md:text-2xl tracking-wide">{user.name.toUpperCase()}</p>
-              <p className="text-cream/30 text-[10px] tracking-widest">{user.username}</p>
+            <div className="flex items-center gap-3">
+              {user.avatar_url && (
+                <img
+                  src={user.avatar_url}
+                  alt={user.name}
+                  className="w-10 h-10 md:w-12 md:h-12 rounded-full border border-cream/20 object-cover"
+                />
+              )}
+              <div className="text-right">
+                <p className="font-display text-xl md:text-2xl tracking-wide">{user.name.toUpperCase()}</p>
+                <p className="text-cream/30 text-[10px] tracking-widest">{user.username}</p>
+              </div>
             </div>
           </div>
 

@@ -8,8 +8,13 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Music DNA — Alex Chen",
-  description: "Your Music DNA decoded",
+  title: "Music DNA — Your musical identity decoded",
+  description: "Discover your musical identity. Your top artists, tracks, and genres decoded by Music DNA.",
+  openGraph: {
+    title: "Music DNA",
+    description: "Discover your musical identity, decoded.",
+    siteName: "Music DNA",
+  },
 };
 
 export default function RootLayout({
