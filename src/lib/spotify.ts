@@ -35,11 +35,13 @@ export async function getTokens(code: string): Promise<{
     }),
   });
 
+  const body = await res.json();
+
   if (!res.ok) {
-    throw new Error(`Spotify token error: ${res.status}`);
+    throw new Error(`Spotify token error: ${res.status} — ${body.error}: ${body.error_description}`);
   }
 
-  return res.json();
+  return body;
 }
 
 /* ── Fetch from Spotify API ── */
